@@ -16,4 +16,13 @@ public class MenuTest {
         Menu menu = new Menu(List.of(new MenuItem("돈까스", 10000), new MenuItem("냉면", 10000)));
         assertThat(menu.choose("돈까스")).isEqualTo(new MenuItem("돈까스", 10000));
     }
+
+    @Test
+    void create_WhenNotContainsName_ThrowException() {
+        Menu menu = new Menu(List.of(new MenuItem("돈까스", 10000), new MenuItem("냉면", 10000)));
+
+        assertThatCode(() -> menu.choose("치킨"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("잘못된 메뉴 이름");
+    }
 }
